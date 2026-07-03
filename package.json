@@ -1,0 +1,31 @@
+{
+  "name": "pm-knowledge",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@9.12.0",
+  "scripts": {
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "pnpm run tags:gen && vitepress build docs",
+    "docs:build:local": "pnpm run tags:gen && SITE_BASE=/ vitepress build docs",
+    "docs:preview": "vitepress preview docs",
+    "docs:preview:local": "SITE_BASE=/ vitepress preview docs",
+    "docs:typecheck": "vue-tsc --noEmit",
+    "tags:gen": "tsx scripts/generate-tags.ts"
+  },
+  "dependencies": {
+    "vue": "^3.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "fast-glob": "^3.3.2",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0",
+    "vitepress": "^1.6.0",
+    "vitepress-plugin-rss": "^0.4.4",
+    "vue-tsc": "^2.1.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

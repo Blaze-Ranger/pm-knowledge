@@ -1,0 +1,182 @@
+/* ===========================================================
+ *  PM Knowledge — 科技感主题
+ *  配色:青色主色 #00d9ff + 品红副色 #b48ead,暗色基调对齐 GitHub Dark
+ *  说明:仅覆写 CSS 变量与少量全局规则,避免与默认主题结构耦合
+ * =========================================================== */
+
+:root {
+  /* 主品牌色 */
+  --vp-c-brand-1: #00d9ff;
+  --vp-c-brand-2: #00b8e6;
+  --vp-c-brand-3: #4de6ff;
+  --vp-c-brand-soft: rgba(0, 217, 255, 0.14);
+
+  /* 提示色(用 muted purple 作为次要提示) */
+  --vp-c-note-1: #b48ead;
+  --vp-c-note-2: #d8b4d0;
+  --vp-c-note-3: #e5c9df;
+  --vp-c-note-soft: rgba(180, 142, 173, 0.14);
+
+  /* 警告色保留温暖黄 */
+  --vp-c-warning-1: #f9e2af;
+  --vp-c-warning-2: #f7d488;
+  --vp-c-warning-3: #f5c45d;
+  --vp-c-warning-soft: rgba(249, 226, 175, 0.14);
+
+  /* 等宽字体优先 JetBrains Mono,无则降级 */
+  --vp-font-family-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', Menlo,
+    Consolas, monospace;
+
+  /* 首页标题渐变 */
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: linear-gradient(
+    120deg,
+    #00d9ff 30%,
+    #b48ead
+  );
+  --vp-home-hero-image-background-image: linear-gradient(
+    -45deg,
+    rgba(0, 217, 255, 0.15) 30%,
+    transparent 60%
+  );
+  --vp-home-hero-image-filter: blur(40px);
+}
+
+/* 暗色模式:对齐 GitHub Dark 调色板 */
+.dark {
+  --vp-c-bg: #0d1117;
+  --vp-c-bg-alt: #0d1117;
+  --vp-c-bg-soft: #161b22;
+  --vp-c-bg-mute: #1c2128;
+  --vp-c-text-1: #c9d1d9;
+  --vp-c-text-2: #8b949e;
+  --vp-c-text-3: #6e7681;
+  --vp-c-border: #30363d;
+  --vp-c-divider: #21262d;
+  --vp-c-gutter: #161b22;
+
+  --vp-c-brand-1: #00d9ff;
+  --vp-c-brand-2: #00b8e6;
+  --vp-c-brand-3: #4de6ff;
+  --vp-c-brand-soft: rgba(0, 217, 255, 0.16);
+
+  --vp-c-note-1: #b48ead;
+  --vp-c-note-soft: rgba(180, 142, 173, 0.16);
+}
+
+/* ===========================================================
+ *  全局规则
+ * =========================================================== */
+
+html {
+  font-feature-settings: 'calt' 1, 'liga' 1;
+}
+
+body {
+  font-family:
+    var(--vp-font-family-base),
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    Arial,
+    sans-serif;
+}
+
+/* 代码字体优先使用等宽栈,并启用连字 */
+code,
+kbd,
+samp,
+pre,
+pre code {
+  font-family: var(--vp-font-family-mono);
+  font-feature-settings: 'calt' 1, 'liga' 1;
+}
+
+/* 行内 code 用品牌色弱背景,与正文区分 */
+:not(pre) > code {
+  background: var(--vp-c-brand-soft);
+  color: var(--vp-c-brand-1);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  font-weight: 500;
+}
+
+/* 正文中的链接:虚线下划线,hover 出现轻微辉光 */
+.vp-doc a {
+  text-decoration: none;
+  border-bottom: 1px dashed var(--vp-c-brand-1);
+  transition:
+    text-shadow 0.2s ease,
+    color 0.2s ease;
+}
+.vp-doc a:hover {
+  text-shadow: 0 0 8px var(--vp-c-brand-soft);
+}
+
+/* 顶部导航:滚动后产生毛玻璃效果 */
+.VPNavBar:not(.has-sidebar):not(.home.top) {
+  -webkit-backdrop-filter: saturate(180%) blur(10px);
+  backdrop-filter: saturate(180%) blur(10px);
+  background: color-mix(in srgb, var(--vp-c-bg) 80%, transparent);
+}
+
+/* 侧边栏选中项强调 */
+.VPSidebarItem.is-active > .item .link .text {
+  color: var(--vp-c-brand-1) !important;
+  font-weight: 600;
+}
+
+/* ===========================================================
+ *  首页静态网格背景(无动画,克制科技感)
+ * =========================================================== */
+
+.dark .VPHome::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+  -webkit-mask-image: radial-gradient(
+    ellipse at center,
+    black 40%,
+    transparent 80%
+  );
+  mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.VPHero .container,
+.VPFeatures .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* 首页特性卡片悬停微高亮 */
+.VPFeature {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.VPFeature:hover {
+  transform: translateY(-2px);
+}
+
+/* 自定义容器:tech 风格 */
+.custom-block {
+  border-radius: 8px;
+}
+
+/* 代码块顶部圆角微调 */
+.vp-doc div[class*='language-'] {
+  border-radius: 8px;
+}
+
+/* 选择文本使用品牌色背景 */
+::selection {
+  background: var(--vp-c-brand-soft);
+  color: var(--vp-c-text-1);
+}

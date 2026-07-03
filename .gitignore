@@ -1,0 +1,31 @@
+# Dependencies
+node_modules
+
+# Build artifacts
+docs/.vitepress/cache
+docs/.vitepress/dist
+dist
+
+# Generated tag pages (regenerated on every build)
+docs/tags/*.md
+!docs/tags/_placeholder.md
+
+# rewrites.generated.ts is regenerated on every build but must be committed
+# so that config.ts can import it on first clone before `pnpm tags:gen` runs.
+# (Do NOT add to .gitignore)
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+*.log
+.vscode/*
+!.vscode/extensions.json
+.idea
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# pnpm
+.pnpm-store
