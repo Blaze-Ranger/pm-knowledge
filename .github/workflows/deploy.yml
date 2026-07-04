@@ -34,6 +34,10 @@ jobs:
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
+        with:
+          # 首次启用 Pages;若已启用为 Branch 部署,需要在仓库 Settings > Pages > Source
+          # 手动改成 "GitHub Actions",这一步才能成功。
+          enablement: true
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
