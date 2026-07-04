@@ -8,9 +8,9 @@ export const tagRewrites: Record<string, string> = {
   "tags/vitepress": "tags/vitepress.md",
   "tags/教程": "tags/教程.md",
   "tags/入门": "tags/入门.md",
-  "tags/读书笔记": "tags/读书笔记.md",
-  "tags/模板": "tags/模板.md",
   "tags/prd": "tags/prd.md",
   "tags/方法论": "tags/方法论.md",
-  "tags/清单": "tags/清单.md"
+  "tags/清单": "tags/清单.md",
+  "tags/读书笔记": "tags/读书笔记.md",
+  "tags/模板": "tags/模板.md"
 }
